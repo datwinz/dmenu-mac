@@ -29,13 +29,7 @@ let kLegacyKc = "kDefaultsGlobalShortcutKeycode"
 let kLegacyMf = "kDefaultsGlobalShortcutModifiedFlags"
 
 extension KeyboardShortcuts.Name {
-    static let activateSearch = Self("activateSearchGlobalShortcut", default: .init(
-        (UserDefaults.standard.object(forKey: kLegacyKc) != nil) ?
-            KeyboardShortcuts.Key(rawValue: UserDefaults.standard.integer(forKey: kLegacyKc)):
-                .space,
-        modifiers: (UserDefaults.standard.object(forKey: kLegacyKc) != nil) ?
-        NSEvent.ModifierFlags(rawValue: UInt(UserDefaults.standard.integer(forKey: kLegacyMf))) :
-            [.command]))
+    static let activateSearch = Self("activateSearch", default: .init(.d, modifiers: [.option]))
 }
 
 @NSApplicationMain
