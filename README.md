@@ -16,12 +16,11 @@ Anyone that needs a quick and intuitive keyboard-only application launcher that 
 If you are like me and have a shit-ton of files on your computer, and spotlight keeps your CPU running like crazy.
 
 1. [Disable spotlight](https://www.google.com/search?q=disable+spotlight+completely) completely and its global shortcut (recommended but not necessary)
-3. Download and run dmenu-mac
+2. Download and run dmenu-mac
 
 ## How to use
-1. Open the app, use cmd-Space to bring it to front.
-2. Optionally, you can change the binding by clicking the ... on the right of the menu.
-3. Type the application you want to open, hit enter to run the one selected.
+1. Open the app, use option-d to bring it to front.
+2. Type the application you want to open, hit enter to run the one selected.
 
 ### Pipes
 You can make dmenu-mac part of your scripting toolbox, use it to prompt the user for options:
