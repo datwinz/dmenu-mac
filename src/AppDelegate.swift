@@ -17,7 +17,7 @@
 import Cocoa
 import Carbon
 import LaunchAtLogin
-import Preferences
+import Settings
 import KeyboardShortcuts
 
 extension Settings.PaneIdentifier {

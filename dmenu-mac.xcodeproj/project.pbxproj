@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A5DA9862D25657700B1D517 /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 4A5DA9852D25657700B1D517 /* Settings */; };
 		7F25568F269CF945002324AC /* CommandArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F25568E269CF945002324AC /* CommandArguments.swift */; };
 		7F255692269CF988002324AC /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 7F255691269CF988002324AC /* ArgumentParser */; };
 		7F255694269D01FF002324AC /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F255693269D01FF002324AC /* InputField.swift */; };
@@ -27,7 +28,6 @@
 		7F32790E1C71DF3E00AFB227 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F32790D1C71DF3E00AFB227 /* Carbon.framework */; };
 		7F5D0E261CACCD0100268983 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5D0E241CACCD0100268983 /* ResultsView.swift */; };
 		7F5D0E2C1CACCDD400268983 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F5D0E281CACCDD400268983 /* Main.storyboard */; };
-		7F6511F529A617F8007D3EB3 /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 7F6511F429A617F8007D3EB3 /* Preferences */; };
 		7F6511F729A619DE007D3EB3 /* GeneralSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6511F629A619DE007D3EB3 /* GeneralSettingsViewController.swift */; };
 		7F6511FB29A61A4E007D3EB3 /* GeneralSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F6511F929A61A4E007D3EB3 /* GeneralSettingsViewController.xib */; };
 		7F6511FE29A61C32007D3EB3 /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = 7F6511FD29A61C32007D3EB3 /* KeyboardShortcuts */; };
@@ -73,9 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A5DA9862D25657700B1D517 /* Settings in Frameworks */,
 				7F2CCA1E268B10F700C14B29 /* FileWatcher in Frameworks */,
 				7F6511FE29A61C32007D3EB3 /* KeyboardShortcuts in Frameworks */,
-				7F6511F529A617F8007D3EB3 /* Preferences in Frameworks */,
 				7F32790E1C71DF3E00AFB227 /* Carbon.framework in Frameworks */,
 				7F255692269CF988002324AC /* ArgumentParser in Frameworks */,
 				7FA29F6C29A55B0B00B27359 /* LaunchAtLogin in Frameworks */,
@@ -200,8 +200,8 @@
 				7F2CCA1D268B10F700C14B29 /* FileWatcher */,
 				7F255691269CF988002324AC /* ArgumentParser */,
 				7FA29F6B29A55B0B00B27359 /* LaunchAtLogin */,
-				7F6511F429A617F8007D3EB3 /* Preferences */,
 				7F6511FD29A61C32007D3EB3 /* KeyboardShortcuts */,
+				4A5DA9852D25657700B1D517 /* Settings */,
 			);
 			productName = "dmenu-mac";
 			productReference = 7FE8A6481C717481000A2C4C /* dmenu-mac.app */;
@@ -615,6 +615,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4A5DA9852D25657700B1D517 /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F6511F329A617F7007D3EB3 /* XCRemoteSwiftPackageReference "Preferences" */;
+			productName = Settings;
+		};
 		7F255691269CF988002324AC /* ArgumentParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7F255690269CF988002324AC /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
@@ -624,11 +629,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7F2CCA1C268B10F700C14B29 /* XCRemoteSwiftPackageReference "FileWatcher" */;
 			productName = FileWatcher;
-		};
-		7F6511F429A617F8007D3EB3 /* Preferences */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7F6511F329A617F7007D3EB3 /* XCRemoteSwiftPackageReference "Preferences" */;
-			productName = Preferences;
 		};
 		7F6511FD29A61C32007D3EB3 /* KeyboardShortcuts */ = {
 			isa = XCSwiftPackageProductDependency;
