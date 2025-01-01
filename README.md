@@ -34,12 +34,12 @@ Yes
 dmenu-mac can be installed with [brew](https://brew.sh/) running:
 
 ```
-brew install dmenu-mac
+brew install datwinz/formulae-and-casks/dmenu-mac
 ```
 
-Optionally, you can download it [here](https://github.com/oNaiPs/dmenu-mac/releases).
+Optionally, you can download it [here](https://github.com/datwinz/dmenu-mac/releases).
 
-NOTE: the releases are not signed yet, use it at your own risk. I'll take care of that as soon as we can assess the number of people interested in the project.
+NOTES: This app is not sandbox, because it acceses binaries in your path. Additionally, the releases are not signed yet, use it at your own risk. I'll take care of that as soon as we can assess the number of people interested in the project.
 
 *Mac OS X 10.12 or greater required.
 
