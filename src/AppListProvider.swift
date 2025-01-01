@@ -34,6 +34,7 @@ class AppListProvider: ListProvider {
         // Catalina moved default applications under a different mask.
         let systemApplicationDir = NSSearchPathForDirectoriesInDomains(
             .applicationDirectory, .systemDomainMask, true)[0]
+        
 
         // appName to dir recursivity key/valye dict
         appDirDict[applicationDir] = true
@@ -52,7 +53,7 @@ class AppListProvider: ListProvider {
         appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"] = true
         appDirDict["/Library/Apple/usr/bin"] = true
         appDirDict["/Library/TeX/texbin"] = true
-        appDirDict["~/.local/bin"] = true
+        appDirDict[NSHomeDirectory()+"/.local/bin"] = true
 
         initFileWatch(Array(appDirDict.keys))
         updateAppList()
@@ -89,7 +90,7 @@ class AppListProvider: ListProvider {
                 if dir.pathExtension == "app" {
                     list.append(dir)
                 // Doesn't resolve symlinked executables and errors because "dmenu-mac isn't allowed to open documents in terminal"
-                } else if fileManager.isExecutableFile(atPath: dir.relativePath) {
+                } else if fileManager.isExecutableFile(atPath: dir.resolvingSymlinksInPath().relativePath) {
                     list.append(dir)
                 } else if dir.hasDirectoryPath && recursive {
                     list.append(contentsOf: self.getAppList(dir))
