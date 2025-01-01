@@ -102,7 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     ]
 
     private lazy var settingsWindowController = SettingsWindowController(
-        preferencePanes: settings,
+        panes: settings,
         style: .segmentedControl,
         animated: true,
         hidesToolbarForSingleItem: true
