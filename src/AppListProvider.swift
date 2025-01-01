@@ -39,6 +39,20 @@ class AppListProvider: ListProvider {
         appDirDict[applicationDir] = true
         appDirDict[systemApplicationDir] = true
         appDirDict["/System/Library/CoreServices/"] = false
+        // Folders in path
+        appDirDict["/usr/local/sbin"] = true
+        appDirDict["/usr/local/bin"] = true
+        appDirDict["/System/Cryptexes/App/usr/bin"] = true
+        appDirDict["/usr/bin"] = true
+        appDirDict["/bin"] = true
+        appDirDict["/usr/sbin"] = true
+        appDirDict["/sbin"] = true
+        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"] = true
+        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"] = true
+        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"] = true
+        appDirDict["/Library/Apple/usr/bin"] = true
+        appDirDict["/Library/TeX/texbin"] = true
+        appDirDict["~/.local/bin"] = true
 
         initFileWatch(Array(appDirDict.keys))
         updateAppList()
@@ -73,6 +87,9 @@ class AppListProvider: ListProvider {
                 let dir = appDir.appendingPathComponent(sub)
 
                 if dir.pathExtension == "app" {
+                    list.append(dir)
+                // Doesn't resolve symlinked executables and errors because "dmenu-mac isn't allowed to open documents in terminal"
+                } else if fileManager.isExecutableFile(atPath: dir.relativePath) {
                     list.append(dir)
                 } else if dir.hasDirectoryPath && recursive {
                     list.append(contentsOf: self.getAppList(dir))
