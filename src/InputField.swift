@@ -14,8 +14,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Foundation
-
 class InputField: NSTextField {
     override func becomeFirstResponder() -> Bool {
         let responderStatus =  super.becomeFirstResponder()

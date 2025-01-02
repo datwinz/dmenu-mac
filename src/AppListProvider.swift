@@ -14,9 +14,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Foundation
 import FileWatcher
-import Fuse
 
 /**
  * Provide a list of launcheable apps for the OS

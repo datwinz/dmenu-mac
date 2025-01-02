@@ -14,8 +14,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Cocoa
-import Carbon
 import LaunchAtLogin
 import Settings
 import KeyboardShortcuts
@@ -23,10 +21,6 @@ import KeyboardShortcuts
 extension Settings.PaneIdentifier {
     static let general = Self("general")
 }
-
-// import legacy settings if they existed
-let kLegacyKc = "kDefaultsGlobalShortcutKeycode"
-let kLegacyMf = "kDefaultsGlobalShortcutModifiedFlags"
 
 extension KeyboardShortcuts.Name {
     static let activateSearch = Self("activateSearch", default: .init(.d, modifiers: [.option]))

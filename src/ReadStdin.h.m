@@ -16,8 +16,6 @@
 
 #import "ReadStdin.h"
 
-#import <poll.h>
-
 @implementation ReadStdin
 
 +(NSString *)read {

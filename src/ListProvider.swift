@@ -14,8 +14,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Foundation
-
 protocol ListProvider {
     // Returns list of items
     func get() -> [ListItem]

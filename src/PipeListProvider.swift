@@ -14,8 +14,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import Foundation
-
 /**
  * Provide a list from a terminal pipe. When action is performed, quit app since we act like a prompt
  */
