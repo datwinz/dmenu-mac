@@ -41,19 +41,19 @@ class AppListProvider: ListProvider {
         appDirDict[systemApplicationDir] = true
         appDirDict["/System/Library/CoreServices/"] = false
         // Folders in path
-        appDirDict["/usr/local/sbin"] = true
-        appDirDict["/usr/local/bin"] = true
-        appDirDict["/System/Cryptexes/App/usr/bin"] = true
-        appDirDict["/usr/bin"] = true
-        appDirDict["/bin"] = true
-        appDirDict["/usr/sbin"] = true
-        appDirDict["/sbin"] = true
-        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"] = true
-        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"] = true
-        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"] = true
-        appDirDict["/Library/Apple/usr/bin"] = true
-        appDirDict["/Library/TeX/texbin"] = true
-        appDirDict[NSHomeDirectory()+"/.local/bin"] = true
+        appDirDict["/usr/local/sbin"] = false
+        appDirDict["/usr/local/bin"] = false
+        appDirDict["/System/Cryptexes/App/usr/bin"] = false
+        appDirDict["/usr/bin"] = false
+        appDirDict["/bin"] = false
+        appDirDict["/usr/sbin"] = false
+        appDirDict["/sbin"] = false
+        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"] = false
+        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"] = false
+        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"] = false
+        appDirDict["/Library/Apple/usr/bin"] = false
+        appDirDict["/Library/TeX/texbin"] = false
+        appDirDict[NSHomeDirectory()+"/.local/bin"] = false
 
         initFileWatch(Array(appDirDict.keys))
         updateAppList()
@@ -89,11 +89,10 @@ class AppListProvider: ListProvider {
 
                 if dir.pathExtension == "app" {
                     list.append(dir)
-                // Doesn't resolve symlinked executables and errors because "dmenu-mac isn't allowed to open documents in terminal"
-                } else if fileManager.isExecutableFile(atPath: dir.resolvingSymlinksInPath().relativePath) {
-                    list.append(dir)
                 } else if dir.hasDirectoryPath && recursive {
                     list.append(contentsOf: self.getAppList(dir))
+                } else if fileManager.isExecutableFile(atPath: dir.resolvingSymlinksInPath().relativePath) {
+                    list.append(dir)
                 }
             }
         } catch {
