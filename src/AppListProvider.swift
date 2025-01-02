@@ -33,24 +33,21 @@ class AppListProvider: ListProvider {
         let systemApplicationDir = NSSearchPathForDirectoriesInDomains(
             .applicationDirectory, .systemDomainMask, true)[0]
         
+        var pathFolders: Array<String> = []
 
         // appName to dir recursivity key/valye dict
         appDirDict[applicationDir] = true
         appDirDict[systemApplicationDir] = true
         appDirDict["/System/Library/CoreServices/"] = false
         // Folders in path
+        pathFolders.append(contentsOf: getContentsOfPathFiles(filepath: "/etc/paths"))
+        pathFolders.append(contentsOf: getContentsOfPathFiles(filepath: "/etc/paths.d/"))
+        pathFolders = pathFolders.filter {$0 != ""}
+        for pathFolder in pathFolders {
+            appDirDict[pathFolder] = false
+        }
+        // Hardcoded bin folders
         appDirDict["/usr/local/sbin"] = false
-        appDirDict["/usr/local/bin"] = false
-        appDirDict["/System/Cryptexes/App/usr/bin"] = false
-        appDirDict["/usr/bin"] = false
-        appDirDict["/bin"] = false
-        appDirDict["/usr/sbin"] = false
-        appDirDict["/sbin"] = false
-        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"] = false
-        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"] = false
-        appDirDict["/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"] = false
-        appDirDict["/Library/Apple/usr/bin"] = false
-        appDirDict["/Library/TeX/texbin"] = false
         appDirDict[NSHomeDirectory()+"/.local/bin"] = false
 
         initFileWatch(Array(appDirDict.keys))
@@ -111,5 +108,35 @@ class AppListProvider: ListProvider {
         DispatchQueue.main.async {
             NSWorkspace.shared.open(app)
         }
+    }
+    
+    func getContentsOfPathFiles(filepath: String) -> Array<String> {
+        let fileManager = FileManager.default
+        var isDir: ObjCBool = false
+        var filelist: Array<String> = []
+        
+        fileManager.fileExists(atPath: filepath, isDirectory: &isDir)
+        
+        if isDir.boolValue {
+            do {
+                let files = try fileManager.contentsOfDirectory(atPath: filepath)
+                for file in files {
+                    let content = fileManager.contents(
+                        atPath: filepath + file)!
+                    let str = String(decoding: content, as: UTF8.self)
+                    let folders = str.components(separatedBy: "\n")
+                    filelist.append(contentsOf: folders)
+                }
+            } catch {
+                    NSLog("Error on getContentsOfPathFiles: %@", error.localizedDescription)
+            }
+        } else {
+            let content = fileManager.contents(
+                atPath: filepath)!
+            let str = String(decoding: content, as: UTF8.self)
+            let folders = str.components(separatedBy: "\n")
+            filelist.append(contentsOf: folders)
+        }
+        return filelist
     }
 }
