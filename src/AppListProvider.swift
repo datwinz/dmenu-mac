@@ -49,6 +49,8 @@ class AppListProvider: ListProvider {
         // Hardcoded bin folders
         appDirDict["/usr/local/sbin"] = false
         appDirDict[NSHomeDirectory()+"/.local/bin"] = false
+        appDirDict["/nix/var/nix/profiles/default/bin"] = false
+        appDirDict[NSHomeDirectory()+"/.nix-profile/bin"] = false
 
         initFileWatch(Array(appDirDict.keys))
         updateAppList()
