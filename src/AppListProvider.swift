@@ -26,18 +26,15 @@ class AppListProvider: ListProvider {
     var appList = [URL]()
 
     init() {
-        let applicationDir = NSSearchPathForDirectoriesInDomains(
-            .applicationDirectory, .localDomainMask, true)[0]
-
-        // Catalina moved default applications under a different mask.
-        let systemApplicationDir = NSSearchPathForDirectoriesInDomains(
-            .applicationDirectory, .systemDomainMask, true)[0]
+        let allMacosApplicationDir = NSSearchPathForDirectoriesInDomains(
+            .allApplicationsDirectory, .allDomainsMask, true)
         
         var pathFolders: Array<String> = []
 
         // appName to dir recursivity key/valye dict
-        appDirDict[applicationDir] = true
-        appDirDict[systemApplicationDir] = true
+        for macosApplicationDir in allMacosApplicationDir {
+            appDirDict[macosApplicationDir] = true
+        }
         appDirDict["/System/Library/CoreServices/"] = false
         // Folders in path
         pathFolders.append(contentsOf: getContentsOfPathFiles(filepath: "/etc/paths"))
@@ -46,11 +43,12 @@ class AppListProvider: ListProvider {
         for pathFolder in pathFolders {
             appDirDict[pathFolder] = false
         }
-        // Hardcoded bin folders
+        // Hardcoded bin and applications folders
         appDirDict["/usr/local/sbin"] = false
         appDirDict[NSHomeDirectory()+"/.local/bin"] = false
         appDirDict["/nix/var/nix/profiles/default/bin"] = false
         appDirDict[NSHomeDirectory()+"/.nix-profile/bin"] = false
+        appDirDict[NSHomeDirectory()+".nix-profile/Applications"] = true
 
         initFileWatch(Array(appDirDict.keys))
         updateAppList()
