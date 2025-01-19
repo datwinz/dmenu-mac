@@ -80,10 +80,9 @@ class AppListProvider: ListProvider {
             let subs = try fileManager.contentsOfDirectory(atPath: appDir.path)
 
             for sub in subs {
-                var dir = appDir.appendingPathComponent(sub)
+                let dir = appDir.appendingPathComponent(sub)
 
                 if dir.pathExtension == "app" {
-                    dir.deletePathExtension()
                     list.append(dir)
                 } else if dir.hasDirectoryPath && recursive {
                     list.append(contentsOf: self.getAppList(dir))
@@ -98,7 +97,12 @@ class AppListProvider: ListProvider {
     }
 
     func get() -> [ListItem] {
-        return appList.map({ListItem(name: $0.lastPathComponent, data: $0)})
+        appList.map({ elem in
+            if elem.pathExtension == "app" {
+                return ListItem(name: elem.deletingPathExtension().lastPathComponent, data: elem)
+            }
+            return ListItem(name: elem.lastPathComponent, data: elem)
+        })
     }
 
     func doAction(item: ListItem) {
