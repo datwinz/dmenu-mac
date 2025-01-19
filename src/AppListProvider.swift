@@ -64,14 +64,12 @@ class AppListProvider: ListProvider {
 
     func updateAppList() {
         var newAppList = [URL]()
-        var nonUniqAppList = [URL]()
         appDirDict.keys.forEach { path in
             let urlPath = URL(fileURLWithPath: path, isDirectory: true)
             let list = getAppList(urlPath, recursive: appDirDict[path]!)
             newAppList.append(contentsOf: list)
         }
-        nonUniqAppList = newAppList
-        appList = Array(Set(nonUniqAppList))
+        appList = Array(Set(newAppList))
     }
 
     func getAppList(_ appDir: URL, recursive: Bool = true) -> [URL] {
