@@ -28,8 +28,8 @@ class AppListProvider: ListProvider {
     init() {
         let allMacosApplicationDir = NSSearchPathForDirectoriesInDomains(
             .allApplicationsDirectory, .allDomainsMask, true)
-        
-        var pathFolders: Array<String> = []
+
+        var pathFolders: [String] = []
 
         // appName to dir recursivity key/valye dict
         for macosApplicationDir in allMacosApplicationDir {
@@ -111,14 +111,14 @@ class AppListProvider: ListProvider {
             NSWorkspace.shared.open(app)
         }
     }
-    
-    func getContentsOfPathFiles(filepath: String) -> Array<String> {
+
+    func getContentsOfPathFiles(filepath: String) -> [String] {
         let fileManager = FileManager.default
         var isDir: ObjCBool = false
-        var filelist: Array<String> = []
-        
+        var filelist: [String] = []
+
         fileManager.fileExists(atPath: filepath, isDirectory: &isDir)
-        
+
         if isDir.boolValue {
             do {
                 let files = try fileManager.contentsOfDirectory(atPath: filepath)
