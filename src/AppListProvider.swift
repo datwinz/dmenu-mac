@@ -48,7 +48,7 @@ class AppListProvider: ListProvider {
         appDirDict[NSHomeDirectory()+"/.local/bin"] = false
         appDirDict["/nix/var/nix/profiles/default/bin"] = false
         appDirDict[NSHomeDirectory()+"/.nix-profile/bin"] = false
-        appDirDict[NSHomeDirectory()+".nix-profile/Applications"] = true
+        appDirDict[NSHomeDirectory()+"/.nix-profile/Applications"] = true
 
         initFileWatch(Array(appDirDict.keys))
         updateAppList()
