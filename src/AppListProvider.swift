@@ -98,9 +98,6 @@ class AppListProvider: ListProvider {
 
     func get() -> [ListItem] {
         appList.map({ elem in
-            if elem.pathExtension == "app" {
-                return ListItem(name: elem.deletingPathExtension().lastPathComponent, data: elem)
-            }
             return ListItem(name: elem.lastPathComponent, data: elem)
         })
     }
