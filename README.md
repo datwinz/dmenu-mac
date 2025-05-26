@@ -1,9 +1,4 @@
-
 # dmenu-mac
-
-[![ci](https://github.com/oNaiPs/dmenu-mac/workflows/Build/badge.svg)](https://github.com/oNaiPs/dmenu-mac)
-
-
 
 dmenu inspired application launcher.
 
@@ -40,7 +35,7 @@ brew install datwinz/formulae-and-casks/dmenu-mac
 
 Optionally, you can download it [here](https://github.com/datwinz/dmenu-mac/releases).
 
-NOTES: This app is not sandboxed, because it accesses binaries in your path. Additionally, the releases are not signed yet, use it at your own risk. I'll take care of that as soon as we can assess the number of people interested in the project.
+NOTES: This app is not sandboxed, because it accesses binaries in your path.
 
 _Mac OS X 10.12 or greater required_
 
