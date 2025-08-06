@@ -88,7 +88,7 @@ class SearchViewController: NSViewController, NSTextFieldDelegate, NSWindowDeleg
         // Get provider list, filter using fuzzy search, apply
         var scoreDict = [Int: Double]()
 
-        let fuse = Fuse(threshold: 0.4)
+        let fuse = Fuse(threshold: 0.3)
         let pattern = fuse.createPattern(from: searchText.stringValue)
 
         let list = listProvider?.get() ?? []
