@@ -17,6 +17,10 @@
 import Fuse
 import KeyboardShortcuts
 
+extension KeyboardShortcuts.Name {
+    static let clearSearchBar = Self("clearSearchbar", default: .init(.u, modifiers: [.control]))
+}
+
 class SearchViewController: NSViewController, NSTextFieldDelegate, NSWindowDelegate {
 
     @IBOutlet fileprivate var searchText: InputField!
@@ -31,6 +35,9 @@ class SearchViewController: NSViewController, NSTextFieldDelegate, NSWindowDeleg
 
         KeyboardShortcuts.onKeyUp(for: .activateSearch) { [self] in
             resumeApp()
+        }
+        KeyboardShortcuts.onKeyUp(for: .clearSearchBar) { [self] in
+            clearFields()
         }
 
         DistributedNotificationCenter.default.addObserver(
