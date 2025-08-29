@@ -60,18 +60,13 @@ class SearchViewController: NSViewController, NSTextFieldDelegate, NSWindowDeleg
         resumeApp()
     }
     
-    override func viewDidAppear() {
-        super.viewDidAppear()
+    func addClearSearchBar() {
         KeyboardShortcuts.onKeyUp(for: .clearSearchBar) { [self] in
             clearFields()
         }
     }
     
-    // Unfortunately this doesn't work. That app doesn't get the notification(?) that the app disappeared.
-    // Maybe NSApplication.shared.isHidden works somewhere? But where, I cannot find the application loop?
-    override func viewDidDisappear() {
-        super.viewDidDisappear()
-        print("i hidden")
+    func removeClearSearchBar() {
         KeyboardShortcuts.disable(.clearSearchBar)
     }
 
@@ -96,6 +91,7 @@ class SearchViewController: NSViewController, NSTextFieldDelegate, NSWindowDeleg
         }
 
         updateColors()
+        addClearSearchBar()
     }
 
     func controlTextDidChange(_ obj: Notification) {
@@ -169,6 +165,7 @@ class SearchViewController: NSViewController, NSTextFieldDelegate, NSWindowDeleg
 
     func closeApp() {
         clearFields()
+        removeClearSearchBar()
         if promptValue == "" {
             NSApplication.shared.hide(nil)
         }
