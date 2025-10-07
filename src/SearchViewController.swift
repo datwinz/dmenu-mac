@@ -160,7 +160,7 @@ class SearchViewController: NSViewController, NSTextFieldDelegate, NSWindowDeleg
 
     func clearFields() {
         self.searchText.stringValue = promptValue
-        self.resultsText.list = listProvider?.get().sorted(by: {$0.name < $1.name}) ?? []
+        self.resultsText.list = listProvider?.get() ?? []
     }
 
     func closeApp() {
