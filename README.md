@@ -37,7 +37,7 @@ Optionally, you can download it [here](https://github.com/datwinz/dmenu-mac/rele
 
 NOTES: This app is not sandboxed, because it accesses binaries in your path.
 
-_Mac OS X 10.12 or greater required_
+_Mac OS X 11.0 or greater required_
 
 ## Features
 
